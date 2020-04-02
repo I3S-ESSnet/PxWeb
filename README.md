@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/runejo/PxWeb.svg?branch=master)](https://travis-ci.org/runejo/PxWeb)
+[![Build Status](https://travis-ci.org/I3S-ESSnet/PxWeb.svg?branch=master)](https://travis-ci.org/I3S-ESSnet/PxWeb)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d46673e9ae35d2a6bdd6/maintainability)](https://codeclimate.com/github/runejo/PxWeb/maintainability)
 
 # PxWeb
