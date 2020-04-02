@@ -3,19 +3,19 @@ os: windows
 services: docker
 env:
   global:
-  - GITHUB_USERNAME=I3S-ESSnet
+  - DOCKERHUB_OWNER=i3sessnet
   - secure: CHI4Ztbi02Bu+xnx/vUkYGEqhDHIy8OeTbJ5hxILhTlb/3i2pSMvXWIxNIHfYySWR7FCJb9sE6Pg2qFcTwIZ2xUfb+UA6J7mCO9ZXRluhJkbNr3yrhGOh+6ea/zs4YgSZFA8zOO4UinceVXq5rOD8alU+DAo/2ZwP4fBomnnix2Z9XGnLePtP6NGytaDU5vgPhWDUTsMGzjHTw2tQnVb0Bh+N4PS/un8HWHgE6uJCCZMP7XjKkOFB7g5FKW5DZWsH68j3ZQYkxMaBI3fJbdTq3FddRQCM3fqxEG70Tlp5eGUW4jkB1jfUHq1yeJ/vhKm8Jm2Opc80nCIKTfndGBmS0O7SVvfV+a2x41CUIbJ0iN6CBtVg/boVmTcnIzjryOM7afeh+ymt4GgBHXdzeybwG/0yXuvoeZWCk7YXP07zrbIVYYlyGTJshQ1/IjZZmnrYXb9bb44aPXUnjM73jtY0ODaIkMbWh4n3mjyY2gYQwC9XdHh9VI3XdsIBuTutBW0fG488ysDKpeJCrPm3tPL/ZNEAjWf1ijoDwBM0bx/fEA9PkszgpFC22TBd6nhmY+nNFcno27VOiIqA90H7acTaES2KMXbEisEDKKx771o7MlCoykISQkQgVrvTfS+C9pEcdDWFQCGHnJhvfn1i0jCXLA25bMXbMMiF8pN4S0ZuCk=
   - secure: eJXD6TpOw5j+IG+Qj3405GV8GfhflyuTL5vQZMDcMxH411YEmra03OlUohlh7LIti+vclGRSjYvmAsqIXe08x/cqHoMzAzj5nhP6ta8DEVWJWLla2soAQIPz7TAYdtrxqWxuKviIGend9WwWCbqpLJZ3k0YnZxIO9D01Lpuhu2cg7zea9bQBCrt++bbb1Hm9iW9shyd3zUkvrUk3sTAzmyZErHmLSzI/x3j20oEyNUcOMMkmA0JP6JKNnXerduQdoo3VdrC53nhA6WeUTWMbNUfmjyXt/ghpnK6q9tO6I85ZmCYZIhoLGbUd/csAL6F3O1grOMp6SjTwHOIBor/wLViVDNKrNblY4q/BEFORJhlCdeJ592ViAFEPEcRtV4q7y0Y/IkeW3KlnJb1EHoWipWPBeBjUEVGm2YNatsjzkagw8W/nM9/JhLr51q4UpFXNDD7S/1qUM2dlU/6w6qptQv+ohpY/aKPACMZ62pRibHkunudlDC6jmWvCoba1EatBpO+lnI+Dte7RCKSJfpfP+PrKL1oV1QvtYlRkBbqJP1ErG19YvVdw4z4Bmuc9hndloKmeIbAMbualzKVuhsSq1qARYnzxesNxtTBMHk69YhbBDgZfhngaSTBt1z3zdEE5TdjLf+9DpRivP4tVyjNQaXltQNZ+3v2prgDopVBGN2M=
 script:
-- docker build --tag "${GITHUB_USERNAME}/pxweb:latest" .
+- docker build --tag "${DOCKERHUB_OWNER}/pxweb:latest" .
 after_script:
 - docker images
 before_deploy:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker tag "${GITHUB_USERNAME}/pxweb:latest" "${GITHUB_USERNAME}/pxweb:windowsservercore-1803"
+- docker tag "${DOCKERHUB_OWNER}/pxweb:latest" "${DOCKERHUB_OWNER}/pxweb:windowsservercore-1803"
 deploy:
   provider: script
-  script: docker push "${GITHUB_USERNAME}/pxweb:latest" && docker push "${GITHUB_USERNAME}/pxweb:windowsservercore-1803"
+  script: docker push "${DOCKERHUB_OWNER}/pxweb:latest" && docker push "${DOCKERHUB_OWNER}/pxweb:windowsservercore-1803"
   on:
     branch: master
     all_branches: true
